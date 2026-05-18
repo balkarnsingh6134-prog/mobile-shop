@@ -20,7 +20,7 @@ const Latest = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:5555/product/allproducts");
+        const response = await axios.get("https://mobile-shop-88re.onrender.com/product/allproducts");
         // Handling both possible response structures
         const data = response.data.body || response.data;
         if (Array.isArray(data)) {

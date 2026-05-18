@@ -46,7 +46,7 @@ function Login() {
 
     try {
       // POST request to the backend login route
-      const response = await axios.post("http://localhost:5555/user/login", data);
+      const response = await axios.post("https://mobile-shop-88re.onrender.com/user/login", data);
       const res = response.data;
 
       if (res.success === false) {

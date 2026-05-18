@@ -21,7 +21,7 @@ function ForgotPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5555/user/forgot-password", { email });
+      const response = await axios.post("https://mobile-shop-88re.onrender.com/user/forgot-password", { email });
       
       if (response.data.success) {
         toast.success("Reset link sent! Please check your email.");

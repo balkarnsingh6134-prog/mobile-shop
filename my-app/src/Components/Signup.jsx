@@ -37,7 +37,7 @@ function Signup() {
     try {
       // Logic: The 'data' object now includes the 'role' (admin or user) 
       // selected by the person signing up.
-      const res = await axios.post("http://localhost:5555/user/signup", data);
+      const res = await axios.post("https://mobile-shop-88re.onrender.com/user/signup", data);
 
       if (res.status === 200 || res.status === 201) {
         toast.success(res.data.message || "Signup Successful!");

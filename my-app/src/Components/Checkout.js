@@ -63,7 +63,7 @@ function Checkout() {
       const id = toast.loading("Processing your order...", { position: "top-right" });
       
       // Pointing to your backend port 5555
-      const response = await axios.post("http://localhost:5555/order/place", orderData);
+      const response = await axios.post("https://mobile-shop-88re.onrender.com/order/place", orderData);
 
       // Using 'response' correctly to avoid undefined errors
       if (response.status === 200 || response.status === 201 || response.data.success) {

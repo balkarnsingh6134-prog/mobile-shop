@@ -15,7 +15,7 @@ export const CartProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const API_BASE_URL = "http://localhost:5555/cart";
+  const API_BASE_URL = "https://mobile-shop-88re.onrender.com/cart";
 
   // Sync cart to local storage whenever it changes
   useEffect(() => {
