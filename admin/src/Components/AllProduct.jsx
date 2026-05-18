@@ -14,7 +14,7 @@ const AllProducts = () => {
       setLoading(true);
       const token = localStorage.getItem('token') || localStorage.getItem('admin_token');
       
-      const res = await axios.get("http://localhost:5555/product/allproducts", {
+      const res = await axios.get("https://mobile-shop-88re.onrender.com/product/allproducts", {
         headers: { 
           'Authorization': `Bearer ${token}`, 
           'token': token 

@@ -12,7 +12,7 @@ const Order = () => {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("http://localhost:5555/order/all");
+      const res = await axios.get("https://mobile-shop-88re.onrender.com/order/all");
       setOrders(res.data.body || []);
     } catch (error) {
       console.error("Error fetching orders:", error);

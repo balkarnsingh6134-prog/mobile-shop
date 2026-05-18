@@ -21,7 +21,7 @@ const EditProduct = () => {
     try {
       const token = localStorage.getItem('token') || localStorage.getItem('admin_token');
       
-      const res = await axios.put(`http://localhost:5555/product/update/${id}`, formData, {
+      const res = await axios.put(`https://mobile-shop-88re.onrender.com/product/update/${id}`, formData, {
         headers: { 
           'token': token,
           'Authorization': `Bearer ${token}` 

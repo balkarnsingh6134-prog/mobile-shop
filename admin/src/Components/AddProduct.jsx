@@ -27,7 +27,7 @@ const AddProduct = () => {
         return;
       }
 
-      const response = await axios.post("http://localhost:5555/product/add", formData, {
+      const response = await axios.post("https://mobile-shop-88re.onrender.com/product/add", formData, {
         headers: {
           'token': token,
           'Authorization': `Bearer ${token}`

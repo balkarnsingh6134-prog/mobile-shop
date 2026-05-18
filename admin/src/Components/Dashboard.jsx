@@ -15,7 +15,7 @@ const Dashboard = () => {
     try {
       // 1. Fetch Sales Data & Calculate counts dynamically
       // We fetch from the orders endpoint to ensure cancelled orders aren't counted
-      const orderRes = await axios.get("http://localhost:5555/order/all");
+      const orderRes = await axios.get("https://mobile-shop-88re.onrender.com/order/all");
       
       if (orderRes.data && (orderRes.data.body || orderRes.data.success)) {
         const activeOrders = orderRes.data.body || [];
