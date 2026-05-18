@@ -2171,17 +2171,21 @@ th {
 /* =========================================================
    Checkout Page Premium Styling
    ========================================================= */
-
+/* ==========================================================================
+   Checkout Main Container Styles
+   ========================================================================== */
 .checkout-wrapper-19 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8fafc;
     min-height: 100vh;
+    box-sizing: border-box;
 }
 
 .container-19 {
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .title-19 {
@@ -2193,20 +2197,27 @@ th {
     font-weight: 800;
 }
 
+/* Main Grid: 2 columns for desktop (Form on left, Summary sidebar on right) */
 .checkout-grid-19 {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 40px;
+    align-items: start;
 }
 
+/* ==========================================================================
+   Form Input / Shipping Form Panels
+   ========================================================================== */
 .form-section-19 {
     background: #ffffff;
     padding: 35px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
 }
 
 .form-section-19 h3 {
+    margin-top: 0;
     margin-bottom: 20px;
     color: #2d3748;
     font-weight: 700;
@@ -2214,7 +2225,6 @@ th {
     padding-left: 10px;
 }
 
-/* Shipping Input Styling */
 .form-section-19 input {
     width: 100% !important;
     height: 50px;
@@ -2225,7 +2235,7 @@ th {
     font-size: 16px;
     display: block;
     box-sizing: border-box;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 .form-section-19 input:focus {
@@ -2239,13 +2249,14 @@ th {
     gap: 15px;
 }
 
-/* PAYMENT ROW - DROPDOWN AND BUTTON IN ONE ROW */
+/* PAYMENT ROW - DROPDOWN AND BUTTON IN ONE ROW FOR DESKTOP */
 .payment-method-row-19 {
     display: flex !important;
     flex-direction: row !important;
     gap: 15px;
     margin-top: 15px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .dropdown-19 {
@@ -2257,10 +2268,17 @@ th {
     font-size: 16px;
     background-color: #ffffff;
     cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.dropdown-19:focus {
+    border-color: #06c4dd;
+    outline: none;
 }
 
 .place-order-btn-19 {
-    flex: 1; /* Large button size */
+    flex: 1; /* Large cohesive button layout sizing */
     height: 52px;
     background-color: #06c4dd !important;
     color: white !important;
@@ -2274,6 +2292,7 @@ th {
     align-items: center;
     justify-content: center;
     white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .place-order-btn-19:hover {
@@ -2282,13 +2301,20 @@ th {
     box-shadow: 0 8px 15px rgba(6, 196, 221, 0.3);
 }
 
-/* Summary Box Styling */
+.place-order-btn-19:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   Order Summary Box Sidebar
+   ========================================================================== */
 .summary-section-19 {
     background: #ffffff;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     height: fit-content;
+    box-sizing: border-box;
 }
 
 .summary-item-19 {
@@ -2309,13 +2335,41 @@ th {
     color: #1a202c;
 }
 
-/* Responsive Scaling */
+/* ==========================================================================
+   STRICT RESPONSIVE SCALING (MOBILE & TABLET VIEWPORTS)
+   ========================================================================== */
 @media (max-width: 768px) {
+    /* Collapses form layout and sidebar into a uniform stacking layout column */
     .checkout-grid-19 {
         grid-template-columns: 1fr;
+        gap: 25px;
     }
+
+    /* Form panels scale dynamically down with reduced padding safely on narrow mobile devices */
+    .form-section-19 {
+        padding: 20px;
+    }
+
+    /* Stacks select options dropdown field and place-order submit action cleanly vertically */
     .payment-method-row-19 {
         flex-direction: column !important;
+        gap: 12px;
+    }
+
+    .dropdown-19,
+    .place-order-btn-19 {
+        width: 100% !important;
+        flex: none;
+    }
+
+    /* Flex text elements split line stacks horizontally if inputs are placed in a sub-flex configuration */
+    .flex-inputs-19 {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .container-19 {
+        margin: 20px auto;
     }
 }
 /* --- Cart Notification Badge Styles --- */
