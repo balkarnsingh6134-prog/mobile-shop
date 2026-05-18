@@ -1,6 +1,6 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
-import Order from '../model/OrderSchema.js'; // MUST match your file name in the model folder
+import Order from '../model/ordersSchema.js'; // FIXED: Changed OrderSchema.js to ordersSchema.js to match your model folder file name
 
 const router = express.Router();
 
