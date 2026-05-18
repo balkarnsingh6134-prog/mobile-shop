@@ -1,7 +1,7 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
 import Order from '../model/OrderSchema.js'; // MUST match your file name in the model folder
-
+import Order from '../model/ordersSchema.js';
 const router = express.Router();
 
 // 1. Configure Nodemailer (Using your credentials)
