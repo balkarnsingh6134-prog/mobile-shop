@@ -43,7 +43,7 @@ function Checkout() {
 
     const totalAmount = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2);
 
-    // Structure data for backend
+    // Structure data for orderRouter.js
     const orderData = {
       fullName: formData.fullName,
       email: formData.email,
@@ -59,49 +59,43 @@ function Checkout() {
       totalAmount: totalAmount
     };
 
-    const toastId = toast.loading("Processing your order...", { position: "top-right" });
+    const id = toast.loading("Processing your order...", { position: "top-right" });
 
     try {
-      // Sending request to live Render backend
+      // Pointing to your live backend on Render
       const response = await axios.post("https://mobile-shop-88re.onrender.com/order/place", orderData);
 
-      // Checking for all typical success states safely
+      // Using 'response' correctly to avoid undefined errors
       if (response.status === 200 || response.status === 201 || response.data?.success) {
-        
-        // Update the loading toast to a success message
-        toast.update(toastId, { 
+        toast.update(id, { 
           render: "Order Placed Successfully! Confirmation mail sent.", 
           type: "success", 
           isLoading: false, 
-          autoClose: 3000 
+          autoClose: 5000 
         });
 
-        // --- CLEAR CART SESSIONS ---
-        setCartItems([]); // Clears global react state
-        localStorage.removeItem('cartItems'); // Clears cached local storage
+        // --- CRITICAL: CLEAR CART AFTER SUCCESS ---
+        setCartItems([]); // Clears global state
+        localStorage.removeItem('cartItems'); // Clears local storage
         
-        // Smoothly redirect to Home page after a short 3-second display duration
-        setTimeout(() => {
-          navigate('/Home');
-        }, 3000);
+        // Redirect to Home after success delay
+        setTimeout(() => navigate('/Home'), 3000);
       } else {
-        // Fallback handler if status code is unexpected
-        toast.update(toastId, {
-          render: "Something went wrong. Please try again.",
+        toast.update(id, {
+          render: "Failed to place order. Something went wrong.",
           type: "error",
           isLoading: false,
           autoClose: 4000
         });
       }
     } catch (error) {
-      console.error("Order Error:", error);
-      // Update loading toast to display the failure details cleanly
-      toast.update(toastId, {
-        render: error.response?.data?.message || "Failed to place order. Please check your connection.",
+      toast.update(id, {
+        render: error.response?.data?.message || "Failed to place order. Ensure your backend server is running.",
         type: "error",
         isLoading: false,
         autoClose: 4000
       });
+      console.error("Order Error:", error);
     }
   };
 

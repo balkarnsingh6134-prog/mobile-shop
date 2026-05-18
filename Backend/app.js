@@ -9,20 +9,28 @@ import orderRouter from "./routes/orderRouter.js";
 
 const app = express();
 
-app.use(cors());
+// --- OPTIMIZED CORS CONFIGURATION ---
+// Allows your local apps and deployed services to safely send requests
+app.use(cors({
+    origin: [
+        "http://localhost:3000", // Standard React App Port
+        "http://localhost:5173", // Vite Frontend Port
+    ],
+    credentials: true
+}));
+
 app.use(express.json());
 app.use(fileUpload());
 
-const port = 5555;
+// --- DYNAMIC PORT BINDING FOR RENDER ---
+// Render automatically sets process.env.PORT, falling back to 5555 locally
+const port = process.env.PORT || 5555;
+
 dbConnect(); 
 
-// Keep your original route
+// Routers
 app.use("/user", userRouter);
-
-// --- ADDED THIS LINE TO FIX THE 404 ERROR ---
-// This allows the Dashboard to access http://localhost:5555/users/all
-app.use("/users", userRouter);
-
+app.use("/users", userRouter); // Supports /users/all queries for your Admin Dashboard
 app.use("/product", productRouter);
 app.use("/cart", cartRouter);
 app.use("/order", orderRouter); 
