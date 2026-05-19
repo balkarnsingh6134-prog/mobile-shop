@@ -35,11 +35,10 @@ function Signup() {
     e.preventDefault();
 
     try {
-      /* 
-        CRITICAL FIX: Changed the endpoint from /Login to /register or /signup 
-        since this is a signup form, not a login form.
+      /* FIX: Restored your original backend URL path (/user/Login) 
+        to resolve the 404 error seen in your console.
       */
-      const res = await axios.post("https://mobile-shop-88re.onrender.com/user/register", data);
+      const res = await axios.post("https://mobile-shop-88re.onrender.com/user/Login", data);
 
       if (res.status === 200 || res.status === 201) {
         toast.success(res.data.message || "Signup Successful!");
@@ -49,10 +48,9 @@ function Signup() {
         localStorage.setItem("userEmail", data.email);
         localStorage.setItem("userRole", data.role);
 
-        /* 
-          ROLE-BASED REDIRECTION FIX:
-          If the selected role is "admin", send them directly to the admin deployment's login page.
-          Otherwise, route regular users to the local client's login route.
+        /* ROLE-BASED REDIRECTION:
+          If admin is selected, break out to your admin app's login URL.
+          Otherwise, use local SPA routing for normal users.
         */
         if (data.role === "admin") {
           window.location.href = "https://mobile-shop-1-30bp.onrender.com/login";
