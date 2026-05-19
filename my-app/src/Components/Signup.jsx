@@ -35,11 +35,14 @@ function Signup() {
     e.preventDefault();
 
     try {
-      // API call to register the user/admin
-      const res = await axios.post("https://mobile-shop-88re.onrender.com/user/Login", data);
+      /* 
+        CRITICAL FIX: Changed the endpoint from /Login to /register or /signup 
+        since this is a signup form, not a login form.
+      */
+      const res = await axios.post("https://mobile-shop-88re.onrender.com/user/register", data);
 
       if (res.status === 200 || res.status === 201) {
-        toast.success(res.data.message || "Signup Successful! Please log in.");
+        toast.success(res.data.message || "Signup Successful!");
         
         // Store user info to localStorage
         localStorage.setItem("userName", data.name);
@@ -47,11 +50,15 @@ function Signup() {
         localStorage.setItem("userRole", data.role);
 
         /* 
-          NOTE: Direct cross-origin redirection (window.location.href) on signup causes 
-          authorization issues because different Render domains cannot share localStorage. 
-          Routing through the main /login page establishes a reliable authentication session.
+          ROLE-BASED REDIRECTION FIX:
+          If the selected role is "admin", send them directly to the admin deployment's login page.
+          Otherwise, route regular users to the local client's login route.
         */
-        navigate("/login");
+        if (data.role === "admin") {
+          window.location.href = "https://mobile-shop-1-30bp.onrender.com/login";
+        } else {
+          navigate("/login");
+        }
       } else {
         toast.error(res.data.message || "Signup failed");
       }
@@ -190,7 +197,13 @@ function Signup() {
                   Already have an account?{" "}
                   <span
                     style={{ cursor: "pointer", color: "#06c4dd", textDecoration: "underline" }}
-                    onClick={() => navigate("/login")}
+                    onClick={() => {
+                      if (data.role === "admin") {
+                        window.location.href = "https://mobile-shop-1-30bp.onrender.com/login";
+                      } else {
+                        navigate("/login");
+                      }
+                    }}
                   >
                     Login
                   </span>
