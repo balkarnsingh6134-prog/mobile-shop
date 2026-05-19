@@ -206,7 +206,7 @@ const Home = () => {
         <div className="container4">
           <img src="https://m.media-amazon.com/images/I/61I7ejSq1GL._AC_SL1500_.jpg" alt="Image 1" />
           <div className="overlay-text">The Phone For Seamless Wireless Charging</div>
-         <Link to="/shop" className="see-more-link">See More</Link>
+          <a> <Link to="/shop" className="see-more-link">See More</Link></a>
         </div>
 
         {/* Overlay Card 2 */}
