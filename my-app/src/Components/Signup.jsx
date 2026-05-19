@@ -46,8 +46,9 @@ function Signup() {
         localStorage.setItem("userEmail", data.email);
         localStorage.setItem("userRole", data.role);
 
-        /* CASE SYNCHRONIZATION FIX: 
-          Changed /Login to lowercase /login to match standard React routing path setups
+        /* EXPLICIT REDIRECTION FIX: 
+          Forces browser window redirect strictly to the root domain 
+          requested when role is set to 'admin'.
         */
         if (data.role === "admin") {
           window.location.href = "https://mobile-shop-1-30bp.onrender.com";
@@ -193,6 +194,9 @@ function Signup() {
                   <span
                     style={{ cursor: "pointer", color: "#06c4dd", textDecoration: "underline" }}
                     onClick={() => {
+                      /* SYNCED TOGGLE LINK: 
+                        Ensures the login option matches the selected role routing configuration
+                      */
                       if (data.role === "admin") {
                         window.location.href = "https://mobile-shop-1-30bp.onrender.com";
                       } else {
