@@ -50,7 +50,7 @@ function Signup() {
           Changed /Login to lowercase /login to match standard React routing path setups
         */
         if (data.role === "admin") {
-          window.location.href = "https://mobile-shop-1-30bp.onrender.com/login";
+          window.location.href = "https://mobile-shop-1-30bp.onrender.com";
         } else {
           navigate("/login");
         }
