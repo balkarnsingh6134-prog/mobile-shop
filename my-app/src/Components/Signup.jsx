@@ -36,7 +36,7 @@ function Signup() {
 
     try {
       // API call to register the user/admin
-      const res = await axios.post("https://mobile-shop-88re.onrender.com/user/signup", data);
+      const res = await axios.post("https://mobile-shop-88re.onrender.com/user/Login", data);
 
       if (res.status === 200 || res.status === 201) {
         toast.success(res.data.message || "Signup Successful! Please log in.");
