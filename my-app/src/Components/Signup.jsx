@@ -35,9 +35,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      /* FIX: Restored your original backend URL path (/user/Login) 
-        to resolve the 404 error seen in your console.
-      */
+      // API call to register the user/admin
       const res = await axios.post("https://mobile-shop-88re.onrender.com/user/Login", data);
 
       if (res.status === 200 || res.status === 201) {
@@ -48,12 +46,11 @@ function Signup() {
         localStorage.setItem("userEmail", data.email);
         localStorage.setItem("userRole", data.role);
 
-        /* ROLE-BASED REDIRECTION:
-          If admin is selected, break out to your admin app's login URL.
-          Otherwise, use local SPA routing for normal users.
+        /* CASE SYNCHRONIZATION FIX: 
+          Changed /Login to lowercase /login to match standard React routing path setups
         */
         if (data.role === "admin") {
-          window.location.href = "https://mobile-shop-1-30bp.onrender.com/Login";
+          window.location.href = "https://mobile-shop-1-30bp.onrender.com/login";
         } else {
           navigate("/login");
         }
@@ -197,7 +194,7 @@ function Signup() {
                     style={{ cursor: "pointer", color: "#06c4dd", textDecoration: "underline" }}
                     onClick={() => {
                       if (data.role === "admin") {
-                        window.location.href = "https://mobile-shop-1-30bp.onrender.com/login";
+                        window.location.href = "https://mobile-shop-1-30bp.onrender.com";
                       } else {
                         navigate("/login");
                       }
@@ -212,7 +209,7 @@ function Signup() {
         </div>
       </div>
 
-      {/* FOOTER SECTION - Original Class Names */}
+      {/* FOOTER SECTION */}
       <div className="box10">
         <div className="footer-container">
           <div className="footer-col">
