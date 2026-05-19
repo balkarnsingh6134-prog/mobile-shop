@@ -53,7 +53,7 @@ function Signup() {
           Otherwise, use local SPA routing for normal users.
         */
         if (data.role === "admin") {
-          window.location.href = "https://mobile-shop-1-30bp.onrender.com/login";
+          window.location.href = "https://mobile-shop-1-30bp.onrender.com/Login";
         } else {
           navigate("/login");
         }
