@@ -44,7 +44,7 @@ const AllProducts = () => {
   const handleDelete = async (id, productName) => {
     try {
       const token = localStorage.getItem('token') || localStorage.getItem('admin_token');
-      const res = await axios.delete(`http://localhost:5555/product/removeproduct/${id}`, {
+      const res = await axios.delete(`https://mobile-shop-88re.onrender.com/product/removeproduct/${id}`, {
         headers: { 'token': token, 'Authorization': `Bearer ${token}` }
       });
 

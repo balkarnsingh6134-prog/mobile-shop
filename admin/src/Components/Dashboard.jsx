@@ -31,14 +31,14 @@ const Dashboard = () => {
       }
 
       // 2. Fetch Products for Catalog Count
-      const productRes = await axios.get("http://localhost:5555/product/allproducts");
+      const productRes = await axios.get("https://mobile-shop-88re.onrender.com/product/allproducts");
       const productData = productRes.data.body || productRes.data.products || productRes.data;
       if (Array.isArray(productData)) {
         setTotalCatalogCount(productData.length); 
       }
 
       // 3. Fetch Users
-      const userRes = await axios.get("http://localhost:5555/users/all");
+      const userRes = await axios.get("https://mobile-shop-88re.onrender.com/users/all");
       const userData = userRes.data.body || userRes.data.users || userRes.data;
       
       if (Array.isArray(userData)) {
@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   const handleDeleteUser = async (userId) => {
     try {
-      await axios.delete(`http://localhost:5555/users/delete/${userId}`);
+      await axios.delete(`https://mobile-shop-88re.onrender.com/users/delete/${userId}`);
       setUsers(users.filter(user => user._id !== userId));
       toast.success("User removed successfully!");
     } catch (error) {
