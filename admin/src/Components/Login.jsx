@@ -6,7 +6,7 @@ import '../App.css';
 
 const Login = () => {
   const [data, setData] = useState({ email: '', password: '' });
-  const navigate = useNavigate(); // 2. Initialize the navigate function
+  const navigate = useNavigate(); // 2. Initialize navigate
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -23,7 +23,7 @@ const Login = () => {
         
         toast.success(res.data.message || "Welcome, Admin!", { theme: "colored" });
         
-        // 3. Use navigate instead of window.location.href
+        // 3. Navigate smoothly without breaking the browser URL request
         setTimeout(() => {
           navigate("/Dashboard"); 
         }, 1000);
