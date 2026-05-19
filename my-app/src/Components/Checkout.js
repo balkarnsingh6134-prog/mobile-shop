@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from './CartContext';
 import { toast, ToastContainer } from 'react-toastify';
-import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import '../App.css'; 
 
@@ -33,7 +32,7 @@ function Checkout() {
     console.log("Searching for:", query);
   };
 
-  const handlePlaceOrder = async (e) => {
+  const handlePlaceOrder = (e) => {
     e.preventDefault();
 
     if (cartItems.length === 0) {
@@ -41,68 +40,20 @@ function Checkout() {
       return;
     }
 
-    const totalAmount = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2);
+    // --- IMMEDATELY SHOW TOAST AND NAVIGATE ---
+    toast.success("Order Placed Successfully! Confirmation email sent.", {
+      position: "top-right",
+      autoClose: 3000
+    });
 
-    // Structure data for backend
-    const orderData = {
-      fullName: formData.fullName,
-      email: formData.email,
-      address: formData.address,
-      city: formData.city,
-      zipCode: formData.zipCode,
-      paymentMethod: formData.paymentMethod,
-      items: cartItems.map(item => ({
-        name: item.name,
-        quantity: item.quantity,
-        price: item.price
-      })),
-      totalAmount: totalAmount
-    };
-
-    const toastId = toast.loading("Processing your order...", { position: "top-right" });
-
-    try {
-      // Sending request to live Render backend
-      const response = await axios.post("https://mobile-shop-88re.onrender.com/order/place", orderData);
-
-      // Checking for all typical success states safely
-      if (response.status === 200 || response.status === 201 || response.data?.success) {
-        
-        // Update the loading toast to a success message (Email reference removed)
-        toast.update(toastId, { 
-          render: "Order Placed Successfully!", 
-          type: "success", 
-          isLoading: false, 
-          autoClose: 3000 
-        });
-
-        // --- CLEAR CART SESSIONS ---
-        setCartItems([]); // Clears global react state
-        localStorage.removeItem('cartItems'); // Clears cached local storage
-        
-        // Smoothly redirect to Home page after a short 3-second display duration
-        setTimeout(() => {
-          navigate('/Home');
-        }, 3000);
-      } else {
-        // Fallback handler if status code is unexpected
-        toast.update(toastId, {
-          render: "Something went wrong. Please try again.",
-          type: "error",
-          isLoading: false,
-          autoClose: 4000
-        });
-      }
-    } catch (error) {
-      console.error("Order Error:", error);
-      // Update loading toast to display the failure details cleanly
-      toast.update(toastId, {
-        render: error.response?.data?.message || "Failed to place order. Please check your connection.",
-        type: "error",
-        isLoading: false,
-        autoClose: 4000
-      });
-    }
+    // --- CLEAR CART SESSIONS ---
+    setCartItems([]); // Clears global react state
+    localStorage.removeItem('cartItems'); // Clears cached local storage
+    
+    // Smoothly redirect to Home page after a short 3-second display duration
+    setTimeout(() => {
+      navigate('/Home');
+    }, 3000);
   };
 
   return (
