@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'; // 1. Import useNavigate
 import '../App.css'; 
 
 const Login = () => {
   const [data, setData] = useState({ email: '', password: '' });
+  const navigate = useNavigate(); // 2. Initialize the navigate function
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -16,15 +18,14 @@ const Login = () => {
       const res = await axios.post("https://mobile-shop-88re.onrender.com/user/login", data);
       
       if (res.data.success) {
-        // 1. Store the exact keys your app expects
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('role', res.data.role);
         
         toast.success(res.data.message || "Welcome, Admin!", { theme: "colored" });
         
-        // 2. Wait 1 second so you can see the toast, then force redirect
+        // 3. Use navigate instead of window.location.href
         setTimeout(() => {
-          window.location.href = "/Dashboard"; 
+          navigate("/Dashboard"); 
         }, 1000);
 
       } else {
