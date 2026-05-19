@@ -28,7 +28,7 @@ function App() {
     // 2. Redirect straight out to the other port after 1.5 seconds
     setTimeout(() => {
       localStorage.clear(); 
-      window.location.href = "http://localhost:3000/login"; 
+      window.location.href = "https://mobile-shop-2.onrender.com/login"; 
     }, 1500);
   };
 
