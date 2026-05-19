@@ -163,7 +163,7 @@ const Home = () => {
         {/* Card 1 */}
         <div className="card3">
           <img src="https://cdn.mos.cms.futurecdn.net/N8HvTtX5JAwd6C5Y2WLZZC.jpg" alt="Image 1" />
-          <a href="/Shop" className="see-more-link-3">See More</a>
+          <Link to="/shop" className="see-more-link">See More</Link>
           <div className="content3">
             <h4>Up to 30% discount</h4>
             <p>Helpful Features Just In Case. Starting $39.99</p>
@@ -173,7 +173,7 @@ const Home = () => {
         {/* Card 2 */}
         <div className="card3">
           <img src="https://th.bing.com/th/id/OIP.KJwN8-AFMw-dkbl7WQy1NAHaEK?w=324&h=182&c=7&r=0&o=7&pid=1.7&rm=3" alt="Image 2" />
-          <a href="/Shop" className="see-more-link-3">See More</a>
+          <Link to="/shop" className="see-more-link">See More</Link>
           <div className="content3">
             <h4>Up to 10% discount</h4>
             <p>Hyper Realistic Ultra Smooth. Starting $45.69</p>
@@ -183,7 +183,7 @@ const Home = () => {
         {/* Card 3 */}
         <div className="card3">
           <img src="https://tse3.mm.bing.net/th/id/OIP.Us2FS6-pFfNW6PwRMjKpPwHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Image 3" />
-          <a href="/Shop" className="see-more-link-3">See More</a>
+          <Link to="/shop" className="see-more-link">See More</Link>
           <div className="content3">
             <h4>Up to 20% discount</h4>
             <p>Honor Magic6 Pro 5G. Starting $99.99</p>
@@ -193,7 +193,7 @@ const Home = () => {
         {/* Card 4 */}
         <div className="card3">
           <img src="https://i01.appmifile.com/webfile/globalimg/products/pc/mi-11-lite-5g/overview06_01.jpg" alt="Image 4" />
-          <a href="/Shop" className="see-more-link-3">See More</a>
+          <Link to="/shop" className="see-more-link">See More</Link>
           <div className="content3">
             <h4>Up to 15% discount</h4>
             <p>Smart Design Lightweight. Starting $59.99</p>
@@ -206,28 +206,28 @@ const Home = () => {
         <div className="container4">
           <img src="https://m.media-amazon.com/images/I/61I7ejSq1GL._AC_SL1500_.jpg" alt="Image 1" />
           <div className="overlay-text">The Phone For Seamless Wireless Charging</div>
-          <a href="/Shop" className="see-more-link-4">See More</a>
+         <Link to="/shop" className="see-more-link">See More</Link>
         </div>
 
         {/* Overlay Card 2 */}
         <div className="container4">
           <img src="https://tse2.mm.bing.net/th/id/OIP.ASzBrGvzXlFKdh_4UvItbgHaJX?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Image 2" />
           <div className="overlay-text">Samsung Galaxy Z Flip6 5G AI Smartphone</div>
-          <a href="/Shop" className="see-more-link-4">See More</a>
+          <Link to="/shop" className="see-more-link">See More</Link>
         </div>
 
         {/* Overlay Card 3 */}
         <div className="container4">
           <img src="https://5.imimg.com/data5/SELLER/Default/2023/6/314623304/FT/US/PS/92394638/mobatree-blp841-original-mobile-battery-for-realme-8-5000-mah-500x500.JPG" alt="Image 3" />
           <div className="overlay-text">Extend Your Playtime & Enjoy Reliability</div>
-          <a href="/Shop" className="see-more-link-4">See More</a>
+          <Link to="/shop" className="see-more-link">See More</Link>
         </div>
 
         {/* Overlay Card 4 */}
         <div className="container4">
           <img src="https://th.bing.com/th/id/OIP.WFqiV4aW5hDX16a1UQFAwAHaEO?w=305&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Image 4" />
           <div className="overlay-text">Phone Silent Vibration & Ringing Modes</div>
-          <a href="/Shop" className="see-more-link-4">See More</a>
+          <Link to="/shop" className="see-more-link">See More</Link>
         </div>
       </div>
 
