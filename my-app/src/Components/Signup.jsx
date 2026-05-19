@@ -2,24 +2,24 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useCart } from "./CartContext"; // Added: Import Cart Context
+import { useCart } from "./CartContext"; // Access global cart state
 
 function Signup() {
   const navigate = useNavigate();
-  const { cartItems } = useCart(); // Added: Access cart items
+  const { cartItems } = useCart();
 
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
     phone: "",
-    role: "user", // Default role remains user
+    role: "user", // Default role
   });
 
-  // Added: Calculate total number of items for the badge
+  // Calculate total number of items for the badge
   const cartCount = cartItems.reduce((acc, item) => acc + (parseInt(item.quantity) || 0), 0);
 
-  // Dummy function for search button functionality
+  // Search button functionality
   const handleSearch = () => {
     const query = document.getElementById('searchBox')?.value;
     console.log("Searching for:", query);
@@ -35,26 +35,23 @@ function Signup() {
     e.preventDefault();
 
     try {
-      // Logic: The 'data' object now includes the 'role' (admin or user) 
-      // selected by the person signing up.
+      // API call to register the user/admin
       const res = await axios.post("https://mobile-shop-88re.onrender.com/user/signup", data);
 
       if (res.status === 200 || res.status === 201) {
-        toast.success(res.data.message || "Signup Successful!");
+        toast.success(res.data.message || "Signup Successful! Please log in.");
         
-        // --- ADDED: STORE USER INFO TO LOCALSTORAGE --
+        // Store user info to localStorage
         localStorage.setItem("userName", data.name);
         localStorage.setItem("userEmail", data.email);
         localStorage.setItem("userRole", data.role);
 
-        // --- ROLE-BASED REDIRECTION LOGIC ---
-        if (data.role === "admin") {
-          // If Admin is selected, redirect to the Dashboard link
-          window.location.href = "https://mobile-shop-1-30bp.onrender.com";
-        } else {
-          // If User is selected, go to the login page as per your procedure
-          navigate("/login");
-        }
+        /* 
+          NOTE: Direct cross-origin redirection (window.location.href) on signup causes 
+          authorization issues because different Render domains cannot share localStorage. 
+          Routing through the main /login page establishes a reliable authentication session.
+        */
+        navigate("/login");
       } else {
         toast.error(res.data.message || "Signup failed");
       }
@@ -107,7 +104,7 @@ function Signup() {
         </ul>
       </div>
 
-      {/* Main Authentication Background Container using NEW class names */}
+      {/* Main Authentication Background Container */}
       <div className="main-auth-background">
         <div className="container-22">
           <div className="row-22">
