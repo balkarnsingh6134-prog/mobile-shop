@@ -50,7 +50,7 @@ function Signup() {
         // --- ROLE-BASED REDIRECTION LOGIC ---
         if (data.role === "admin") {
           // If Admin is selected, redirect to the Dashboard link
-          window.location.href = "https://mobile-shop-1-30bp.onrender.com/Login";
+          window.location.href = "https://mobile-shop-1-30bp.onrender.com";
         } else {
           // If User is selected, go to the login page as per your procedure
           navigate("/login");
