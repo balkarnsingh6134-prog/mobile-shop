@@ -39,7 +39,8 @@ const Order = () => {
     try {
       // This call deletes the order. 
       // When you return to the Dashboard, fetchDashboardData will pull the new, reduced count.
-      await axios.delete(`http://localhost:5555/order/cancel/${orderId}`);
+      // Changed from localhost to your live Render backend URL:
+      await axios.delete(`https://mobile-shop-88re.onrender.com/order/cancel/${orderId}`);
       
       toast.success("Order cancelled successfully!", { 
         position: "top-right",
